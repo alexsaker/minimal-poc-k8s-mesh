@@ -10,6 +10,7 @@ export class AppController {
   getData() {
     return this.appService.getData();
   }
+
   @Get('timestamp')
   getTimestamp() {
     return this.appService.getTimestamp();

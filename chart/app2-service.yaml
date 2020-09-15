@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    io.kompose.service: app2
+  name: app2
+spec:
+  ports:
+    - name: '4002'
+      port: 4002
+      targetPort: 4002
+  selector:
+    io.kompose.service: app2
+status:
+  loadBalancer: {}

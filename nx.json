@@ -24,6 +24,12 @@
   "projects": {
     "app1": {
       "tags": []
+    },
+    "app2": {
+      "tags": []
+    },
+    "shared": {
+      "tags": []
     }
   }
 }

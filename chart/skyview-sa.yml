@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  creationTimestamp: "2020-09-15T12:18:24Z"
+  name: skyview
+  resourceVersion: "26621"
+  uid: e3278f20-675b-4fb6-bb1c-28e18da84860
+secrets:
+- name: skyview-token-pln5h

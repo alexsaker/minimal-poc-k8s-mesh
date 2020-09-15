@@ -1,0 +1,25 @@
+version: '3'
+services:
+  app1:
+    container_name: app1
+    image: asaker/app1:v1
+    networks:
+      - default
+    environment:
+      - CONTAINERIZED_ENV=true
+      - PORT_APP2=4002
+    depends_on:
+      - app2
+    ports:
+      - '4001:4001'
+  app2:
+    container_name: app2
+    image: asaker/app2:v1
+    networks:
+      - default
+
+    ports:
+      - '4002:4002'
+networks:
+  default:
+    driver: bridge

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: app2
+  name: app2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: app2
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        io.kompose.network/default: 'true'
+        io.kompose.service: app2
+    spec:
+      containers:
+        - image: asaker/app2:v1
+          imagePullPolicy: 'Always'
+          name: app2
+          ports:
+            - containerPort: 4002
+          resources: {}
+      restartPolicy: Always
+      serviceAccountName: 'skyview'
+      volumes: null
+status: {}
