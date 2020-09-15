@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "projects": {
+    "app1": {
+      "root": "apps/app1",
+      "sourceRoot": "apps/app1/src",
+      "projectType": "application",
+      "prefix": "app1",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/app1",
+            "main": "apps/app1/src/main.ts",
+            "tsConfig": "apps/app1/tsconfig.app.json",
+            "assets": ["apps/app1/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/app1/src/environments/environment.ts",
+                  "with": "apps/app1/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "app1:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "apps/app1/tsconfig.app.json",
+              "apps/app1/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/app1/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/app1/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/nest"
+  },
+  "defaultProject": "app1"
+}
