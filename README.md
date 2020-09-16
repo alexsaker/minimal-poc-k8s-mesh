@@ -11,15 +11,15 @@ kubectl and kompose need to be deployed
 
 ```bash
 npm i
-nx start app1
-nx start app2
+npm run nx -- start app1
+npm run nx -- start app2
 curl http://localhost:4001/api/app1/timestamp
 ```
 
 ## Launch with docker-compose
 
 ```bash
-docker-compose up -f docker-compose-dev.yml
+docker-compose -f docker-compose-dev.yml up
 ```
 
 ## Building docker images and pushing them
@@ -44,11 +44,12 @@ kompose -f ../docker-compose.yml convert
 ```bash
 # Modify services and deployments accordingly removing network policies as it is not mandatory here and adding service account
 cd ..
+kubectl create ns demo
 kubectl create sa skyview -n demo
 # Add service account in deployment files
 kubectl apply -f ./chart -n demo
 # Check out result
 kubectl get all -n demo
-kubectl port-forward deply/app1 -n demo 8000:4001
+kubectl port-forward deploy/app1 -n demo 8000:4001
 curl http://localhost:8000/api/app1/timestamp
 ```
